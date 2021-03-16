@@ -78,13 +78,10 @@ object Utils {
         return result
     }
 
-    fun toInitials(firstName: String?, lastName: String?): String {
+    fun toInitials(firstName: String?, lastName: String?): String? {
         val result1 = if (firstName != "" && firstName != " " && firstName != null) firstName.getOrNull(0)?.toUpperCase() else null
         val result2 = if (lastName != "" && lastName != " " && lastName != null) lastName.getOrNull(0)?.toUpperCase() else null
-        var result:String?
-        result =
-            if(result1 == null && result2 == null) null else if(result1 != null && result2 != null) "$result1$result2" else if (result1 != null) "$result1" else "$result2"
-        return "$result"
+        return if(result1 == null && result2 == null) null else if(result1 != null && result2 != null) "$result1$result2" else if (result1 != null) "$result1" else "$result2"
     }
 }
 
