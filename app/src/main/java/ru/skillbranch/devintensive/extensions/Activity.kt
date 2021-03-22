@@ -11,10 +11,11 @@ import android.view.inputmethod.InputMethodManager
             inputManager.hideSoftInputFromWindow(view.windowToken, 0) }
     }
 
-    fun Activity.isKeyboardOpen(rootView: View):Boolean{
+    fun Activity.isKeyboardOpen():Boolean{
         val softKeyboardHeight = 100
         val rect = Rect()
 
+        val rootView : View = window.decorView.rootView
         rootView.getWindowVisibleDisplayFrame(rect)
 
         val dm = rootView.resources.displayMetrics
@@ -22,10 +23,12 @@ import android.view.inputmethod.InputMethodManager
         return heightDiff > softKeyboardHeight * dm.density
     }
 
-    fun Activity.isKeyboardClosed(rootView: View):Boolean{
+    fun Activity.isKeyboardClosed():Boolean{
 
         val softKeyboardHeight = 100
         val rect = Rect()
+
+        val rootView : View = window.decorView.rootView
 
         rootView.getWindowVisibleDisplayFrame(rect)
 
