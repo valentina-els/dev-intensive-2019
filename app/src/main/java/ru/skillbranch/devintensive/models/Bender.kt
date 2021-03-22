@@ -54,22 +54,22 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = NAME) 
     enum class Question(val question: String, val answer: List<String>){
         NAME("Как меня зовут?", listOf("Бендер", "Bender")){
             override fun nextQuestion(): Question = PROFESSION
-            override fun getRegExp(): Regex = Regex("^[A-Z][a-z]*?\$")
+            override fun getRegExp(): Regex = Regex("^[A-ZА-Я]\\w*$") //[a-z]*?$
             override fun getText(): String = "Имя должно начинаться с заглавной буквы"
         },
         PROFESSION("Назови мою профессию?", listOf("сгибальщик","bender")){
             override fun nextQuestion(): Question = MATERIAL
-            override fun getRegExp(): Regex = Regex("^[a-z]*?\$")
+            override fun getRegExp(): Regex = Regex("^[а-яa-z]\\w*\$") // *?$
             override fun getText(): String = "Профессия должна начинаться со строчной буквы"
         },
         MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "metal", "iron", "wood")){
             override fun nextQuestion(): Question = BDAY
-            override fun getRegExp(): Regex = Regex("^[A-Z]*[a-z]*?\$")
+            override fun getRegExp(): Regex = Regex("^\\w+\$")
             override fun getText(): String = "Материал не должен содержать цифр"
         },
         BDAY("Когда меня создали?", listOf("2993")){
             override fun nextQuestion(): Question = SERIAL
-            override fun getRegExp(): Regex = Regex("^[0-9]*?\$")
+            override fun getRegExp(): Regex = Regex("^[0-9]+?\$")
             override fun getText(): String = "Год моего рождения должен содержать только цифры"
         },
         SERIAL("Мой серийный номер?", listOf("2716057")){
