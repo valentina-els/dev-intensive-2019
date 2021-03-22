@@ -13,7 +13,7 @@ const val DAY = 24 * HOUR
 const val MONTH = 30 * DAY
 const val YEAR = 365 * DAY
 
-fun Date.format(pattern: String="HH:mm:ss dd:MM:yy") : String{
+fun Date.format(pattern: String="HH:mm:ss dd.MM.yy") : String{
     val dateFormat = SimpleDateFormat(pattern, Locale("ru"))
     return dateFormat.format(this)
 }
