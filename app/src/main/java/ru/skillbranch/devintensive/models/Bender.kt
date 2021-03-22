@@ -15,16 +15,24 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = NAME) 
     }
 
     fun listenAnswer(answer: String) : Pair<String, Triple<Int, Int, Int>>{
-        return if(question.getRegExp().matches(answer)) {
-            if (question.answer.contains(answer)) {
-                question = question.nextQuestion()
-                "Отлично - это правильный ответ!\n${question.question}" to status.color
+        return if(question != IDLE) {
+            if (question.getRegExp().matches(answer)) {
+                if (question.answer.contains(answer)) {
+                    question = question.nextQuestion()
+                    "Отлично - ты справился\n${question.question}" to status.color
+                } else {
+                    status = status.nextStatus()
+                    if (status == Status.NORMAL) {
+                        "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
+                    } else {
+                        "Это не правильный ответ\n${question.question}" to status.color
+                    }
+                }
             } else {
-                status = status.nextStatus()
-                "Это не правильный ответ!\n${question.question}" to status.color
+                question.getText() + "\n${question.question}" to status.color
             }
         }else{
-            question.getText() + "\n${question.question}" to status.color
+            question.question to status.color
         }
     }
 
