@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.models.Bender
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(){
     lateinit var benderImage : ImageView
     lateinit var textTxt : TextView
     lateinit var messageEt : EditText
@@ -29,7 +29,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         textTxt = findViewById(R.id.tv_text)
         messageEt = findViewById(R.id.et_message)
         sendBtn = findViewById(R.id.iv_send)
-        sendBtn.setOnClickListener(this)
+        sendBtn.setOnClickListener {
+            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
+            messageEt.setText("")
+            val (r, g, b) = color
+            benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
+            textTxt.text = phrase
+        }
 
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
         val question = savedInstanceState?.getString("QUESTION") ?:Bender.Question.NAME
@@ -48,16 +54,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             } else {
                 false
             }
-        }
-    }
-
-    override fun onClick(v: View?) {
-        if(v?.id == R.id.iv_send){
-            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
-            messageEt.setText("")
-            val (r,g,b) = color
-            benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
-            textTxt.text = phrase
         }
     }
 
