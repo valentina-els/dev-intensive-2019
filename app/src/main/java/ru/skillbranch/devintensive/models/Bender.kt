@@ -54,7 +54,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = NAME) 
     enum class Question(val question: String, val answer: List<String>){
         NAME("Как меня зовут?", listOf("Бендер", "Bender")){
             override fun nextQuestion(): Question = PROFESSION
-            override fun getRegExp(): Regex = Regex("^[A-ZА-Я]\\w*$") //[a-z]*?$
+            override fun getRegExp(): Regex = Regex("^[A-ZА-Я].*\$") //[a-z]*?$
             override fun getText(): String = "Имя должно начинаться с заглавной буквы"
         },
         PROFESSION("Назови мою профессию?", listOf("сгибальщик","bender")){
@@ -64,7 +64,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = NAME) 
         },
         MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "metal", "iron", "wood")){
             override fun nextQuestion(): Question = BDAY
-            override fun getRegExp(): Regex = Regex("^\\w+\$")
+            override fun getRegExp(): Regex = Regex("^[A-ZА-Я]*[a-zа-я]*?\$")  //^[A-ZА-Я]*[a-zа-я]*?\$
             override fun getText(): String = "Материал не должен содержать цифр"
         },
         BDAY("Когда меня создали?", listOf("2993")){
