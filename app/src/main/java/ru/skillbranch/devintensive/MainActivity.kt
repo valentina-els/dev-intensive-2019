@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.models.Bender
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity(), View.OnClickListener{
     lateinit var benderImage : ImageView
     lateinit var textTxt : TextView
     lateinit var messageEt : EditText
@@ -29,9 +29,7 @@ class MainActivity : AppCompatActivity(){
         textTxt = findViewById(R.id.tv_text)
         messageEt = findViewById(R.id.et_message)
         sendBtn = findViewById(R.id.iv_send)
-        sendBtn.setOnClickListener {
-            actionDone()
-        }
+        sendBtn.setOnClickListener(this)
 
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
         val question = savedInstanceState?.getString("QUESTION") ?:Bender.Question.NAME
@@ -46,6 +44,7 @@ class MainActivity : AppCompatActivity(){
         messageEt.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 actionDone()
+                this.hideKeyboard()
                 true
             } else {
                 false
@@ -59,7 +58,6 @@ class MainActivity : AppCompatActivity(){
         val (r,g,b) = color
         benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
         textTxt.text = phrase
-        this.hideKeyboard()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -70,5 +68,15 @@ class MainActivity : AppCompatActivity(){
 
         Log.d("M_MainActivity", "onSaveInstanceState ${benderObj.status.name} ${benderObj.question.name}")
 
+    }
+
+    override fun onClick(v: View?) {
+        if(v?.id == R.id.iv_send){
+            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
+            messageEt.setText("")
+            val (r,g,b) = color
+            benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
+            textTxt.text = phrase
+        }
     }
 }
