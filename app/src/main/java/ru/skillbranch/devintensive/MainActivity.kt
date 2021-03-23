@@ -30,11 +30,7 @@ class MainActivity : AppCompatActivity(){
         messageEt = findViewById(R.id.et_message)
         sendBtn = findViewById(R.id.iv_send)
         sendBtn.setOnClickListener {
-            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
-            messageEt.setText("")
-            val (r, g, b) = color
-            benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
-            textTxt.text = phrase
+            actionDone()
         }
 
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
