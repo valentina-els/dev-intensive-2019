@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                app:drawableStartCompat="@drawable/ic_sp_24" />
+                app:drawableLeftCompat="@drawable/ic_sp_24" />
             <TextView style="@style/Profile.Metrics.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                app:drawableStartCompat="@drawable/ic_respect_24"/>
+                app:drawableLeftCompat="@drawable/ic_respect_24"/>
             <TextView style="@style/Profile.Metrics.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
