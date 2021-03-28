@@ -10,11 +10,9 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -36,7 +34,6 @@ class ProfileActivity : AppCompatActivity(){
     lateinit var viewFields : Map<String, TextView>
     val regex = Regex("()|(https:\\/\\/)?(www\\.)?(github\\.com\\/)+(?!enterprise|features|topics|collections|trending|events|marketplace|pricing|nonprofit|customer-stories|security|login|join)[A-Za-z]+")
 
-    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
@@ -54,11 +51,9 @@ class ProfileActivity : AppCompatActivity(){
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         viewModel.getProfileData().observe(this, Observer { updateUI(it) })
         viewModel.getTheme().observe(this, Observer { updateTheme(it) })
-
     }
 
     private fun updateTheme(mode: Int) {
-        Log.d("M_ProfileViewModel", "update theme")
         delegate.localNightMode = mode
     }
 

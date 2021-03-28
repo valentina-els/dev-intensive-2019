@@ -15,7 +15,7 @@ import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 class CircleImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0,
+    defStyleAttr: Int = 0
 ) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyleAttr){
     companion object{
         private const val BORDER_COLOR:Int = Color.WHITE
