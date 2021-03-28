@@ -1,9 +1,8 @@
-package ru.skillbranch.devintensive
+package ru.skillbranch.devintensive.ui.profile
 
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -11,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.models.Bender
 
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         textTxt.text = benderObj.askQuestion()
 
         messageEt.setImeOptions(EditorInfo.IME_ACTION_DONE)
-        messageEt.setOnEditorActionListener { v, actionId, event ->
+        messageEt.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 actionDone()
                 this.hideKeyboard()
@@ -63,8 +63,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState?.putString("STATUS", benderObj.status.name)
-        outState?.putString("QUESTION", benderObj.question.name)
+        outState.run {
+            putString("STATUS", benderObj.status.name)
+            putString("QUESTION", benderObj.question.name)
+        }
 
         Log.d("M_MainActivity", "onSaveInstanceState ${benderObj.status.name} ${benderObj.question.name}")
 

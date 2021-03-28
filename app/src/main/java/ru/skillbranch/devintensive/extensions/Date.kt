@@ -26,14 +26,13 @@ fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECOND) : Date{
         TimeUnits.MINUTE -> value * MINUTE
         TimeUnits.HOUR -> value * HOUR
         TimeUnits.DAY -> value * DAY
-        else -> throw IllegalStateException("invalidate unit")
     }
     this.time = time
     return this
 }
 
 fun Date.humanizeDiff() : String{
-    var result = ""
+    val result: String
 
     val milliseconds = Date().time -  this.time
     result = if (milliseconds != 0.toLong())
