@@ -26,7 +26,7 @@
                 android:layout_width="@dimen/btn_round_size_40"
                 android:layout_height="@dimen/btn_round_size_40"
                 android:background="@drawable/btn_round_bg"
-                android:src="@drawable/ic_baseline_brightness_24"
+                android:src="@drawable/ic_switch_day_night"
                 android:layout_toStartOf="@+id/iv_avatar"
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="@dimen/spacing_huge_32"/>

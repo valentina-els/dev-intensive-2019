@@ -6,11 +6,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.skillbranch.devintensive.models.Profile
-import ru.skillbranch.devintensive.repositories.PreferenceRepository
+import ru.skillbranch.devintensive.repositories.PreferencesRepository
 
 class ProfileViewModel : ViewModel(){
 
-    private val repository : PreferenceRepository = PreferenceRepository()
+    private val repository : PreferencesRepository = PreferencesRepository
     private val profileData = MutableLiveData<Profile>()
     private val appTheme : MutableLiveData<Int> = MutableLiveData()
 

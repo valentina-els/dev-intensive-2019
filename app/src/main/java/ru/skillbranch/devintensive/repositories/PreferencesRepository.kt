@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import ru.skillbranch.devintensive.App
 import ru.skillbranch.devintensive.models.Profile
 
-class PreferenceRepository {
+object PreferencesRepository {
 
     private val FIRST_NAME = "FIRST_NAME"
     private val LAST_NAME = "LAST_NAME"
@@ -16,6 +16,7 @@ class PreferenceRepository {
     private val RESPECT = "RESPECT"
     private val APP_THEME = "APP_THEME"
 
+//    private val prefs =  PreferenceManager.getDefaultSharedPreferences(App.applicationContext())
     private val prefs : SharedPreferences by lazy {
         val ctx = App.applicationContext()
         PreferenceManager.getDefaultSharedPreferences(ctx)
