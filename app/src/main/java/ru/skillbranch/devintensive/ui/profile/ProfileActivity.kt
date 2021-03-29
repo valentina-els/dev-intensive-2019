@@ -128,8 +128,8 @@ class ProfileActivity : AppCompatActivity(){
         val color = array.getColor(0, Color.TRANSPARENT)
 
 //        if(initials_text != null && initials_text.length != 0) {
-            iv_avatar.setInitials(initials_text, color)
-            iv_avatar.invalidate()
+//            iv_avatar.setInitials(initials_text, color)
+//            iv_avatar.invalidate()
 //        }else{
 //            iv_avatar.setInitials("", color)
 //            var avatar = resources.getDrawable(R.drawable.avatar_default, theme)

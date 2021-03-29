@@ -112,7 +112,6 @@ class CircleImageView @JvmOverloads constructor(
         resultCanvas.drawBitmap(maskBm, viewRect, viewRect, null)
         if(drawable != null) {
             srcBm = drawable.toBitmap(w, h, Bitmap.Config.ARGB_8888)
-            if(srcBm != null)
             resultCanvas.drawBitmap(srcBm, viewRect, viewRect, maskPain)
         }
     }
@@ -131,9 +130,9 @@ class CircleImageView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         canvas?.drawBitmap(resultBm, viewRect, viewRect, null)
-        if(canvas!=null){ //initials.length != 0 &&
-            drawInitials(canvas)
-        }
+//        if(canvas!=null){ //initials.length != 0 &&
+//            drawInitials(canvas)
+//        }
         //resize
         val half = (cv_borderWidth/2).toInt()
         borderRect.set(viewRect)
@@ -142,11 +141,11 @@ class CircleImageView @JvmOverloads constructor(
 
     }
 
-    public fun setInitials(text:String, color:Int){
-        initials = text
-        initialsColor = color
-        invalidate()
-    }
+//    public fun setInitials(text:String, color:Int){
+//        initials = text
+//        initialsColor = color
+//        invalidate()
+//    }
 
 }
 
