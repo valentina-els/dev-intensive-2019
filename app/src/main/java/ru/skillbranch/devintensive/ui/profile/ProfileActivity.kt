@@ -120,21 +120,21 @@ class ProfileActivity : AppCompatActivity(){
     }
 
     private fun setInitials(){
-        val initials_text = Utils.toInitials(et_first_name.text.toString(),
+        var initials_text = Utils.toInitials(et_first_name.text.toString(),
             et_last_name.text.toString())
-        if(initials_text != null && initials_text.length != 0) {
+        if(initials_text == null) initials_text = ""
+        val attribute = intArrayOf(R.attr.colorAccent)
+        val array: TypedArray = getTheme().obtainStyledAttributes(attribute)
+        val color = array.getColor(0, Color.TRANSPARENT)
 
-            val attribute = intArrayOf(R.attr.colorAccent)
-            val array: TypedArray = getTheme().obtainStyledAttributes(attribute)
-            val color = array.getColor(0, Color.TRANSPARENT)
-
+//        if(initials_text != null && initials_text.length != 0) {
             iv_avatar.setInitials(initials_text, color)
             iv_avatar.invalidate()
-        }else{
-            iv_avatar.setInitials("", Color.BLACK)
-            var avatar = resources.getDrawable(R.drawable.avatar_default, theme)
-            iv_avatar.setImageDrawable(avatar)
-        }
+//        }else{
+//            iv_avatar.setInitials("", color)
+//            var avatar = resources.getDrawable(R.drawable.avatar_default, theme)
+//            iv_avatar.setImageDrawable(avatar)
+//        }
 
     }
 

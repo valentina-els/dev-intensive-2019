@@ -8,6 +8,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.Dimension
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.toRectF
+import kotlinx.android.synthetic.main.activity_profile.view.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
@@ -30,11 +31,10 @@ class CircleImageView @JvmOverloads constructor(
     private val viewRect = Rect()
     private val borderRect = Rect()
     private var initials = ""
-    private var initialsColor : Int = Color.BLACK
+    private var initialsColor : Int = resources.getColor(R.color.colorAccent, null)
     private lateinit var resultBm : Bitmap
     private lateinit var maskBm : Bitmap
     private lateinit var srcBm : Bitmap
-    private lateinit var viewModel: ProfileViewModel
 
     init {
         if(attrs != null){
@@ -106,11 +106,15 @@ class CircleImageView @JvmOverloads constructor(
         val maskCanvas = Canvas(maskBm)
         maskCanvas.drawOval(viewRect.toRectF(), maskPain)
         maskPain.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-        srcBm = drawable.toBitmap(w,h,Bitmap.Config.ARGB_8888)
+
 
         val resultCanvas = Canvas(resultBm)
         resultCanvas.drawBitmap(maskBm, viewRect, viewRect, null)
-        resultCanvas.drawBitmap(srcBm, viewRect, viewRect, maskPain)
+        if(drawable != null) {
+            srcBm = drawable.toBitmap(w, h, Bitmap.Config.ARGB_8888)
+            if(srcBm != null)
+            resultCanvas.drawBitmap(srcBm, viewRect, viewRect, maskPain)
+        }
     }
 
     private fun drawInitials(canvas: Canvas){
@@ -127,7 +131,7 @@ class CircleImageView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         canvas?.drawBitmap(resultBm, viewRect, viewRect, null)
-        if(initials.length != 0 && canvas!=null){
+        if(canvas!=null){ //initials.length != 0 &&
             drawInitials(canvas)
         }
         //resize
