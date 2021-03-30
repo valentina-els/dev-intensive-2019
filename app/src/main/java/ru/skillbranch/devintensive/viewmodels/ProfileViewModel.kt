@@ -12,7 +12,7 @@ class ProfileViewModel : ViewModel(){
 
     private val repository : PreferencesRepository = PreferencesRepository
     private val profileData = MutableLiveData<Profile>()
-    private val appTheme : MutableLiveData<Int> = MutableLiveData()
+    private val appTheme = MutableLiveData<Int>()
 
     init{
         Log.d("M_ProfileViewModel", "init view model")

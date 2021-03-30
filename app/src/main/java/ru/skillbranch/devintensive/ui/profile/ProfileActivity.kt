@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.ui.custom.TextIconDrawable
 import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
@@ -37,7 +38,7 @@ class ProfileActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_constraint)
+        setContentView(R.layout.activity_profile)
         initViews(savedInstanceState)
         initViewModel()
     }
@@ -104,7 +105,6 @@ class ProfileActivity : AppCompatActivity(){
 
         btn_switch_theme.setOnClickListener {
             viewModel.switchTheme()
-
         }
 
         et_repository.addTextChangedListener(object : TextWatcher {
@@ -120,22 +120,22 @@ class ProfileActivity : AppCompatActivity(){
     }
 
     private fun setInitials(){
-        var initials_text = Utils.toInitials(et_first_name.text.toString(),
+        val initials_text = Utils.toInitials(et_first_name.text.toString(),
             et_last_name.text.toString())
-        if(initials_text == null) initials_text = ""
-        val attribute = intArrayOf(R.attr.colorAccent)
-        val array: TypedArray = getTheme().obtainStyledAttributes(attribute)
-        val color = array.getColor(0, Color.TRANSPARENT)
 
-//        if(initials_text != null && initials_text.length != 0) {
-//            iv_avatar.setInitials(initials_text, color)
-//            iv_avatar.invalidate()
-//        }else{
-//            iv_avatar.setInitials("", color)
-//            var avatar = resources.getDrawable(R.drawable.avatar_default, theme)
-//            iv_avatar.setImageDrawable(avatar)
-//        }
+        if(initials_text != null && initials_text.length != 0) {
+            val attribute = intArrayOf(R.attr.colorAccent)
+            val array: TypedArray = getTheme().obtainStyledAttributes(attribute)
+            val color = array.getColor(0, Color.TRANSPARENT)
 
+            val drawable = TextIconDrawable(initials_text, color)
+            drawable.invalidateSelf()
+            iv_avatar.setImageDrawable(drawable)
+        }else{
+            iv_avatar.setImageResource(R.drawable.avatar_default)
+
+        }
+        iv_avatar.update()
     }
 
     private fun showCurrentMode(isEdit: Boolean){
