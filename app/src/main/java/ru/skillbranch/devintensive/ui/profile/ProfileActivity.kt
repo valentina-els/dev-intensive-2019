@@ -33,7 +33,7 @@ class ProfileActivity : AppCompatActivity(){
     private lateinit var viewModel: ProfileViewModel
     var isEditMode = false
     lateinit var viewFields : Map<String, TextView>
-    val regex = Regex("()|(https:\\/\\/)?(www\\.)?(github\\.com\\/)+(?!enterprise|features|topics|collections|trending|events|marketplace|pricing|nonprofit|customer-stories|security|login|join)[A-Za-z]+")
+    val regex = Regex("()|(https:\\/\\/)?(www\\.)?(github\\.com\\/)+(?!enterprise|features|topics|collections|trending|events|marketplace|pricing|nonprofit|customer-stories|security|login|join)[A-Za-z\\w\\d\\-_]+")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
