@@ -12,8 +12,10 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.Dimension
 import androidx.annotation.Px
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.toRectF
+import ru.skillbranch.devintensive.App
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.extensions.dpToPx
 import ru.skillbranch.devintensive.extensions.pxToDp
@@ -91,7 +93,7 @@ class CircleImageView @JvmOverloads constructor(
     }
 
     fun setBorderColor(@ColorRes colorId: Int){
-        cv_borderColor = colorId
+        cv_borderColor = ContextCompat.getColor(App.applicationContext(), colorId)
         setup()
     }
 
@@ -115,17 +117,9 @@ class CircleImageView @JvmOverloads constructor(
             color = cv_borderColor
         }
 
-
+        invalidate()
     }
 
-//    private fun prepareShader(w:Int, h:Int){
-//
-//
-//
-//
-//
-//
-//    }
 
     private fun prepareBitmap(w:Int, h:Int){
         maskBm = Bitmap.createBitmap(w,h,Bitmap.Config.ALPHA_8)
