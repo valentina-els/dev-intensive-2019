@@ -16,6 +16,7 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.toRectF
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.extensions.dpToPx
+import ru.skillbranch.devintensive.extensions.pxToDp
 import kotlin.properties.Delegates
 
 class CircleImageView @JvmOverloads constructor(
@@ -95,10 +96,10 @@ class CircleImageView @JvmOverloads constructor(
     }
 
     @Dimension
-    fun getBorderWidth():Int = cv_borderWidth.toInt()
+    fun getBorderWidth():Int = context.pxToDp(cv_borderWidth)
 
     fun setBorderWidth(@Dimension dp: Int){
-        cv_borderWidth = dp.toFloat()
+        cv_borderWidth = context.dpToPx(dp)
         setup()
     }
 
